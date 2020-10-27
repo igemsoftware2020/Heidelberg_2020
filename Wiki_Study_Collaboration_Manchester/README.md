@@ -1,9 +1,9 @@
 # Web scraper for the iGEM wiki study
 
 # Introduction
-This tool was created for a collaboration during the iGEM 2020 contest between the [Team Manchester](2020.igem.org/Team:Manchester) and the [Team Heidelberg](2020.igem.org/Team:Heidelberg). The purpose of the web scraper is to collect data from the iGEM wiki to make it easier for future team to write and design their own wiki.
+This tool was created for a collaboration during the iGEM 2020 contest between the [Team Manchester](https://2020.igem.org/Team:Manchester) and the [Team Heidelberg](https://2020.igem.org/Team:Heidelberg). The purpose of the web scraper is to collect data from the iGEM wiki to make it easier for future team to write and design their own wiki.
 
-See the results [here](2020.igem.org/Team:Manchester/Wiki_Study)
+See the results [here](https://2020.igem.org/Team:Manchester/Wiki_Study).
 
 ## Usage
 
