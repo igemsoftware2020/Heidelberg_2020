@@ -1,0 +1,192 @@
+<geneiousWorkflows>
+  <XMLSerialisableRootElement name="3DOC" author="iGEM Team Heidelberg 2020 (Lucas Arnoldt, Fabian Bradic)" geneiousVersion="2020.0.5" uniqueId="0a4e8c94-9b95-4afa-ba69-09bb35f8d016" revisionNumber="36" description="&lt;html&gt;Workflow for efficient sequence concatenation of fusion proteins with linkers and 3d design by iGEM Heidelberg 2020 (Lucas Arnoldt, Fabian Bradic). The processed and outputted FASTA files of fusion protein parts can be inputted into a pipeline creating PDB models via PyRosetta respectively trRosetta.&lt;/html&gt;" bundledIconName="tools">
+    <workflowElement id="FilterOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="filterWhat">eachDocument</option>
+        <option name="match">all</option>
+        <multiOption name="filter">
+          <value>
+            <option name="field">cache_name</option>
+            <option name="condition">contains</option>
+            <option name="value">begin</option>
+          </value>
+        </multiOption>
+      </Options>
+      <optionToExpose optionName="filterWhat" label="" />
+    </workflowElement>
+    <workflowElement type="com.biomatters.plugins.workflows.WorkflowElementCombineWithEarlierDocuments">
+      <options>
+        <option name="back">1</option>
+      </options>
+    </workflowElement>
+    <workflowElement id="FilterOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="filterWhat">eachDocument</option>
+        <option name="match">all</option>
+        <multiOption name="filter">
+          <value>
+            <option name="field">cache_name</option>
+            <option name="condition">does_not_contain</option>
+            <option name="value">begin</option>
+          </value>
+        </multiOption>
+      </Options>
+      <optionToExpose optionName="filterWhat" label="" />
+    </workflowElement>
+    <workflowElement id="Operation_com.biomatters.plugins.alignment.TrimAnnotationGenerator" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="action">remove</option>
+        <option name="applyToReferencedSequences">false</option>
+        <childOption name="vectorTrim">
+          <option name="vectorScreening">false</option>
+          <option name="minHit">16</option>
+          <multiOption name="vectorDatabaseOption">
+            <value>
+              <option name="vectorDatabaseOption">UniVec</option>
+            </value>
+          </multiOption>
+        </childOption>
+        <childOption name="primerTrim">
+          <option name="primerScreening">true</option>
+          <childOption name="primerTrim">
+            <option name="primers">urn:local:Lucas Arnoldt:wl-cf0rj3w</option>
+            <option name="allowMismatches">false</option>
+            <option name="maxMismatches">5</option>
+            <option name="minLength">3</option>
+          </childOption>
+        </childOption>
+        <childOption name="errorProbability">
+          <option name="errorProbability">false</option>
+          <option name="errorLimit">0.05</option>
+        </childOption>
+        <childOption name="lowQualityTrim">
+          <option name="lowQuality">false</option>
+          <option name="lowQualityLimit">0</option>
+        </childOption>
+        <childOption name="ambiguityTrim">
+          <option name="ambiguity">false</option>
+          <option name="ambiguityLimit">2</option>
+        </childOption>
+        <childOption name="trimStart">
+          <option name="startTrim">true</option>
+          <option name="startTrimAtLeast">false</option>
+          <option name="startTrimMinimum">0</option>
+        </childOption>
+        <childOption name="trimEnd">
+          <option name="endTrim">false</option>
+          <option name="endTrimAtLeast">false</option>
+          <option name="endTrimMinimum">0</option>
+        </childOption>
+        <childOption name="minLength">
+          <option name="use">false</option>
+          <option name="minLength">20</option>
+        </childOption>
+        <childOption name="maxLength">
+          <option name="use">false</option>
+          <option name="maxLength">1000</option>
+        </childOption>
+      </Options>
+      <optionToExpose optionName="action" label="" />
+    </workflowElement>
+    <workflowElement type="com.biomatters.plugins.workflows.WorkflowElementSaveAndContinue">
+      <options>
+        <option name="save">true</option>
+        <option name="saveInSubFolder">false</option>
+        <option name="subFolderName" />
+        <option name="addVariable">Include Name...</option>
+        <option name="selectDocuments">true</option>
+        <option name="doWhat">continue</option>
+        <option name="back">2</option>
+      </options>
+    </workflowElement>
+    <workflowElement type="com.biomatters.plugins.workflows.WorkflowElementCombineWithEarlierDocuments">
+      <options>
+        <option name="back">4</option>
+      </options>
+    </workflowElement>
+    <workflowElement id="TranslationOperation" exposeNoOptions="false" exposeAllOptions="true" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="geneticCode">universal</option>
+        <option name="alwaysUseIt">false</option>
+        <option name="frame">translationFrameOption1</option>
+        <option name="translateFirstCodonUsingFirstCodonTable">true</option>
+        <option name="removeFinalStopCodon">true</option>
+      </Options>
+      <optionToExpose optionName="geneticCode" label="" />
+    </workflowElement>
+    <workflowElement id="FilterOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="filterWhat">eachSequence</option>
+        <option name="match">all</option>
+        <multiOption name="filter">
+          <value>
+            <option name="field">anyField</option>
+            <option name="condition">contains</option>
+            <option name="value">Translation</option>
+          </value>
+        </multiOption>
+      </Options>
+      <optionToExpose optionName="filterWhat" label="" />
+    </workflowElement>
+    <workflowElement id="BatchExport" exposeNoOptions="false" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="fileFormat">fasta</option>
+        <option name="optionsButton">Options</option>
+        <option name="folder" extra="C:\\Users\\Lucas Arnoldt\\Pictures,">{DEFAULT_LOCATION}</option>
+        <option name="extension">.fasta</option>
+        <option name="exportOptionsXml" />
+        <option name="exportToSingleFile">false</option>
+        <option name="singleFileName">results</option>
+      </Options>
+      <optionToExpose optionName="folder" label="" />
+    </workflowElement>
+    <workflowElement type="com.biomatters.plugins.workflows.WorkflowElementCombineWithEarlierDocuments">
+      <options>
+        <option name="back">3</option>
+      </options>
+    </workflowElement>
+    <workflowElement id="FilterOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="filterWhat">eachDocument</option>
+        <option name="match">all</option>
+        <multiOption name="filter">
+          <value>
+            <option name="field">cache_name</option>
+            <option name="condition">does_not_contain</option>
+            <option name="value">Translation</option>
+          </value>
+        </multiOption>
+      </Options>
+      <optionToExpose optionName="filterWhat" label="" />
+    </workflowElement>
+    <workflowElement id="SortOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="field">cache_name</option>
+        <option name="reverseSort">false</option>
+        <option name="onlyKeepWithField">false</option>
+        <option name="applyMaximumToKeep">false</option>
+        <option name="maximumToKeep">100</option>
+      </Options>
+      <optionToExpose optionName="field" label="" />
+    </workflowElement>
+    <workflowElement id="com.biomatters.plugins.cloning.LigateOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement">
+      <Options>
+        <option name="order" />
+        <option name="concatenateByIndexAlignment">indexValue</option>
+      </Options>
+      <optionToExpose optionName="order" label="" />
+    </workflowElement>
+    <workflowElement id="TranslationOperation" exposeNoOptions="true" exposeAllOptions="false" suppressErrors="false" showButtonForExposedGroup="false" groupNameForExposedOptions="" type="com.biomatters.plugins.workflows.DocumentOperationWorkflowElement" />
+    <workflowElement type="com.biomatters.plugins.workflows.WorkflowElementSaveAndContinue">
+      <options>
+        <option name="save">true</option>
+        <option name="saveInSubFolder">false</option>
+        <option name="subFolderName">{Name_Of_Input_0_Steps_Ago}</option>
+        <option name="addVariable">Include Name...</option>
+        <option name="selectDocuments">false</option>
+        <option name="doWhat">continue</option>
+        <option name="back">2</option>
+      </options>
+    </workflowElement>
+  </XMLSerialisableRootElement>
+</geneiousWorkflows>

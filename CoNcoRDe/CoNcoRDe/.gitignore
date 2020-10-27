@@ -1,0 +1,13 @@
+__pycache__
+*.egg-info
+.vscode
+XDG_CACHE_HOME
+runs
+new-runs
+*.ipynb
+*.torch
+events.*
+.pytest_cache/
+.idea/
+data/*/*.csv
+.ipynb_checkpoints
